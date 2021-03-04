@@ -24,7 +24,7 @@ if (cmdArgs.length < 1) {
 	console.log(chalk.greenBright(`<✔> CONNECING TO \`${cmdArgs[0]}\` <✔>`))
 
 	var ColorChat = (cmdArgs[1] == 'true')
-	if (ColorChat) console.log(chalk.blueBright(`<ℹ> ENABLING COLORED CHAT MODE <ℹ>`));
+	if (ColorChat) console.log(chalk.blueBright(`<ℹ> ENABLING COLORED TEXT MODE <ℹ>`));
 
 
 	var UniqueTitle = (cmdArgs[2] == 'true')
@@ -45,7 +45,7 @@ Client.on('connected', (addr, port) => {
 })
 
 Client.on('disconnected', (reason) => {
-	console.log(chalk.redBright(`<⛔> Twitch disconnected: ${reason} <⛔>`))
+	console.log(chalk.redBright(`<⛔> TWITCH DISCONNECTED: ${reason} <⛔>`))
 })
 
 var color1 = randomRGB()
