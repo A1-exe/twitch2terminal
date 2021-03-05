@@ -56,21 +56,21 @@ Client.on('disconnected', (reason) => {
 	console.log(chalk.redBright(`<⛔> TWITCH DISCONNECTED: ${reason} <⛔>`))
 })
 
-var color1 = (UseRGB)? randomRGB() : randomHSL
-var color2 = (UseRGB)? randomRGB() : randomHSL
-var color3 = (UseRGB)? randomRGB() : randomHSL
+var color1 = (UseRGB)? randomRGB() : randomHSL()
+var color2 = (UseRGB)? randomRGB() : randomHSL()
+var color3 = (UseRGB)? randomRGB() : randomHSL()
 
 Client.on('message', (channel, user, message, self) => {
 	if (self) return;
 	if (UniqueTitle){
-		color3 = (UseRGB)? randomRGB() : randomHSL
+		color3 = (UseRGB)? randomRGB() : randomHSL()
 	}
 
 	var username 	= user['username']
 	var message 	= message.replace(/[^\x00-\x7F]/g, "")
 
 	var datestr 	= chalk `{${color1} [} {${color2} ${moment(Date.now()).format('h:mm:ss')}} {${color1} ]} {${color2} ||}`
-	var namestr 	= chalk `{bold.rgb(25, 255, 100) {${color3} ${username}}${" ".repeat(25-username.length)}}`
+	var namestr 	= chalk `{bold.${color3} ${username}${" ".repeat(25-username.length)}}`
 	var messstr		= (ColorChat) ? chalk `{${color3} ${message}}` : message
 	console.log(`${datestr} ${namestr} : ${messstr}`)
 });
