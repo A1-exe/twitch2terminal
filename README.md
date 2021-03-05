@@ -3,10 +3,11 @@
 
 ## Usage:
 ```
-node readchat *CHANNELNAME* [ColorChat] [RainbowNames]
+node readchat *CHANNELNAME* [ColorChat] [RainbowNames] [UseRGB]
 
 [ColorChat] = true or false
 [RainbowNames] = true or false
+[UseRGB] = true or false
 ```
 ## Example:
 ```

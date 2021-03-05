@@ -11,6 +11,11 @@ function randomRGB() {
     return `rgb( ${round(rand()*max)}, ${round(rand()*max)}, ${round(rand()*max)})`;
 }
 
+function randomHSL(){
+	let rand = Math.random
+	return `hsl( ${360*rand()}, ${25+70*rand()}, ${85+10*rand()})`
+}
+
 // --> INITIALIZATION <--
 console.clear()
 
@@ -29,6 +34,9 @@ if (cmdArgs.length < 1) {
 
 	var UniqueTitle = (cmdArgs[2] == 'true')
 	if (UniqueTitle) console.log(chalk.blueBright(`<ℹ> ENABLING UNIQUE TITLES MODE <ℹ>`));
+
+	var UseRGB = (cmdArgs[3] == 'true')
+	if (UseRGB) console.log(chalk.blueBright(`<ℹ> SWITCHING FROM HSL TO RGB <ℹ>`));
 }
 
 const Client = new Twitch.Client({
@@ -48,14 +56,14 @@ Client.on('disconnected', (reason) => {
 	console.log(chalk.redBright(`<⛔> TWITCH DISCONNECTED: ${reason} <⛔>`))
 })
 
-var color1 = randomRGB()
-var color2 = randomRGB()
-var color3 = randomRGB()
+var color1 = (UseRGB)? randomRGB() : randomHSL
+var color2 = (UseRGB)? randomRGB() : randomHSL
+var color3 = (UseRGB)? randomRGB() : randomHSL
 
 Client.on('message', (channel, user, message, self) => {
 	if (self) return;
 	if (UniqueTitle){
-		color3 = randomRGB()
+		color3 = (UseRGB)? randomRGB() : randomHSL
 	}
 
 	var username 	= user['username']
